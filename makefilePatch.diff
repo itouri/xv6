@@ -1,0 +1,37 @@
+diff --git a/Makefile b/Makefile
+index 33bfb0a..af625c8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -29,10 +29,10 @@ OBJS = \
+        vm.o\
+ 
+ # Cross-compiling (e.g., on Mac OS X)
+-#TOOLPREFIX = i386-jos-elf-
++TOOLPREFIX = /opt/gnu/i386-jos-elf/bin/
+ 
+ # Using native tools (e.g., on X86 Linux)
+-#TOOLPREFIX = 
++#TOOLPREFIX =
+ 
+ # Try to infer the correct TOOLPREFIX if not set
+ ifndef TOOLPREFIX
+@@ -51,7 +51,7 @@ TOOLPREFIX := $(shell if i386-jos-elf-objdump -i 2>&1 | grep '^elf32-i386$$' >/d
+ endif
+ 
+ # If the makefile can't find QEMU, specify its path here
+-#QEMU = 
++QEMU = qemu-system-i386
+ 
+ # Try to infer the correct QEMU
+ ifndef QEMU
+@@ -67,8 +67,8 @@ QEMU = $(shell if which qemu > /dev/null; \
+        echo "***" 1>&2; exit 1)
+ endif
+ 
+-CC = $(TOOLPREFIX)gcc
+-AS = $(TOOLPREFIX)gas
++CC = /opt/gnu/bin/i386-jos-elf-gcc
++AS = $(TOOLPREFIX)as
+ LD = $(TOOLPREFIX)ld
+ OBJCOPY = $(TOOLPREFIX)objcopy
+ OBJDUMP = $(TOOLPREFIX)objdump
